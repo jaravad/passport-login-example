@@ -1,0 +1,15 @@
+<%- include('../includes/head.ejs') %>
+<h1>Log in</h1>
+<form action="/login" method="POST">
+  <div>
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email">
+  </div>
+  <div>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password">
+  </div>
+  <button type="submit">Log in</button>
+</form>
+<a href="/register">Register</a>
+<%- include('../includes/end.ejs') %>
