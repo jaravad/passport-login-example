@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const passport = require('passport');
 const flash = require('express-flash');
 const session = require('express-session');
+const methodOverride = require('method-override');
 
 dotenv.config();
 
@@ -23,6 +24,7 @@ app.use(session({
 }))
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(methodOverride('_method'));
 
 initializePassport(
   passport,
@@ -70,6 +72,15 @@ app.post('/register', checkNotAuntenticated, async (req, res) => {
     console.log(err);
     res.redirect('/register');
   }
+});
+
+app.delete('/logout', (req, res) => {
+  req.logout(err => {
+    if (err) {
+      return err;
+    }
+    else res.redirect('/login');
+  });
 });
 
 function checkAuntenticated(req, res, next) {
